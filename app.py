@@ -24,19 +24,20 @@ st.write(all_value)
 # st.write(all_value)
 
 scaler = StandardScaler()
-scaled_X = Scaler.fit_transform(X)
+scaled_X = scaler.fit_transform(X)
 
 final_value = scaler.transform([all_value])
 
 model = st.cache(RandomForestRegressor)()
 model.fit(X,y)
-house_price = model.predict(final_value)[0][0]
+house_price = model.predict(final_value)[0]
 
 with st.spinner('prediction house price'):
   time.sleep(1)
-msg = f'''house price is: ${house_price*100000}'''
+msg = f'''house price is: $ {round(house_price*100000,2)}'''
 st.success(msg)
 st.markdown('''**Design and Developed by :anajliyadav**''')
+
 
 
 
