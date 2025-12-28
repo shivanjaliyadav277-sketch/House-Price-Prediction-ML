@@ -4,6 +4,7 @@ from sklearn.preprocessing import StandardScaler
 import pandas as pd
 import time
 from sklearn.datasets import fetch_california_housing
+from sklearn.ensemble import RandomForestRegressor
 st.title('🏠House Price prediction using ML')
 
 st.image('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRq-35QBawdcQKkchXYV-qPFZ3ei7y6TOoYTJk-H_06hf9MUyRkQOHBz4lbuQ&s')
@@ -19,6 +20,25 @@ for i in X:
   ans = st.sidebar.slider(f'Select {i} value',min_value,max_value)
   all_value.append(ans)
 st.write(all_value)
+
+# st.write(all_value)
+
+scaler = StandardScaler()
+scaled_X = Scaler.fit_transform(X)
+
+final_value = scaler.transform([all_value])
+
+model = RandomForestRegressor()
+model.fit(X,y)
+house_price = model.predict(final_value)[0][0]
+
+with st.spinner('prediction house price'):
+  time.sleep(1)
+msg = f'''house price is: ${house_price*100000}'''
+st.success(msg)
+st.markdown('''**Design and Developed by :anajliyadav**''')
+
+
 
 
 
